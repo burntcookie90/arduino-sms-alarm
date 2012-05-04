@@ -1,10 +1,12 @@
-Arduino SMS Alarm
+Arduino SMS Alarm | Google Voice Port
 =================
 
 An Arduino based burglar alarm that sends an SMS when motion is detected. 
 It will send an SMS to you every 30 minutes while motion is detected (configurable).
+This version of the code is configured to work with a Google Voice account, as opposed to a 
+TelAPI account
 
-![SMS Screenshot](https://raw.github.com/mattwilliamson/arduino-sms-alarm/master/action_shots/sms.png)
+![SMS Screenshot](https://raw.github.com/ZachOrr/arduino-sms-alarm/master/action_shots/sms.png)
 
 
 ## Requirements
@@ -12,13 +14,13 @@ It will send an SMS to you every 30 minutes while motion is detected (configurab
 * Python
 * Python library *pyserial* installed
 * Python library *requests* installed
-* A [TelAPI](http://goo.gl/A36VN) account
+* A [Google Voice](http://google.com/voice) account
 * An [Arduino](http://arduino.cc)
 * A [Parallax PIR sensor](http://www.parallax.com/tabid/768/ProductID/83/Default.aspx)
 * Some [female-female jumper wires](http://adafruit.com/products/266)
 * Some [break-away headers](http://www.adafruit.com/products/400) (to convert female to male)
 
-![PIR Sensor](https://raw.github.com/mattwilliamson/arduino-sms-alarm/master/action_shots/pir_sensor.png)
+![PIR Sensor](https://raw.github.com/ZachOrr/arduino-sms-alarm/master/action_shots/pir_sensor.png)
 
 
 # Set up
@@ -30,8 +32,8 @@ It will send an SMS to you every 30 minutes while motion is detected (configurab
 1. Attach **-** on the PIR sensor to **GND** on the Arduino
 1. Attach **OUT** on the PIR sensor to **DIGITAL 2** on the Arduino
 
-![Schematic](https://raw.github.com/mattwilliamson/arduino-sms-alarm/master/action_shots/Schematic_bb.png)
-![Wired Up](https://raw.github.com/mattwilliamson/arduino-sms-alarm/master/action_shots/wired_up.png)
+![Schematic](https://raw.github.com/ZachOrr/arduino-sms-alarm/master/action_shots/Schematic_bb.png)
+![Wired Up](https://raw.github.com/ZachOrr/arduino-sms-alarm/master/action_shots/wired_up.png)
 
 
 ## Upload the sketch
@@ -47,10 +49,9 @@ Your arduino LED will now be blnking. This means the PIR sensor is calibrating.
 
 1. Open server.py with a text editor
 1. Change the value of `SERIAL_PORT` to the serial port you set in the [Arduino IDE](http://arduino.cc/hu/Main/Software). For Windows it might look like *COM2*, for Posix systems, it might look like */dev/tty.usbserial-AH00PP05*
-1. Change the value of `SMS_FROM` to the number in your [TelAPI account numbers](http://www.telapi.com/numbers/) (You can set this to another number, such as your own phone and it will cost a little extra. This is what I do.)
+1. Change the value of `GMAIL_LOGIN` to your Gmail address
+1. Change the value of `GMAIL_PASSWORD` to your Gmail password
 1. Change the value `SMS_TO` to your cell phone
-1. Change the value of `TELAPI_ACCOUNT_SID` to your `Account SID` as found at [your TelAPI dashboard](http://www.telapi.com/dashboard)
-1. Change the value of `TELAPI_TOKEN` to your `Account Token` as found at [your TelAPI dashboard](http://www.telapi.com/dashboard)
 
 ## Run it!
 
@@ -69,26 +70,11 @@ Now, whevever motion is detected in the infra-red spectrum (think body heat), `s
 1. Tape or screw the sensor to the top
 1. Finit!
 
-![Cut a hole](https://raw.github.com/mattwilliamson/arduino-sms-alarm/master/action_shots/case.png)
-![Cut a hole](https://raw.github.com/mattwilliamson/arduino-sms-alarm/master/action_shots/complete.png)
+![Cut a hole](https://raw.github.com/ZachOrr/arduino-sms-alarm/master/action_shots/case.png)
+![Cut a hole](https://raw.github.com/ZachOrr/arduino-sms-alarm/master/action_shots/complete.png)
 
 
 Video
 =====
 
 Quick video on youtube: http://youtu.be/9AuOZ4iV9zY
-
-
-
-**BEEP BEEP WHISTLE**
-
-![X-Wing Car](https://raw.github.com/mattwilliamson/arduino-sms-alarm/master/action_shots/xwingcar.jpg)
-
-**YUM** (Makes a nice case)
-
-![Sabra Hummus Single Serve](https://raw.github.com/mattwilliamson/arduino-sms-alarm/master/action_shots/sabra.jpg)
-
-
-Free $25 credit when you sign up for a [TelAPI](http://goo.gl/A36VN) account!
-
-

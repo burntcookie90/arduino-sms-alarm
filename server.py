@@ -2,6 +2,7 @@
 
 import serial
 import requests
+from pygooglevoice import *
 from datetime import datetime, timedelta
 
 # Set the serial port to the same serial port you uploaded the arduino sketch to
@@ -13,19 +14,10 @@ SERIAL_BAUD = 115200
 # Don"t send more than one message every 30 minutes
 SENSOR_INTERVAL = timedelta(minutes=30)
 
-SMS_FROM = "YOUR TELAPI NUMBER" # Make sure this is a number on telapi.com or you'll get charged extra for spoofing
+GMAIL_LOGIN = "youremail@gmail.com"
+GMAIL_PASSWORD = "YOUR PASSWORDS"
 SMS_TO = "YOUR CELL PHONE NUMBER"
 SMS_BODY = "ALERT! Your Arduino just detected motion!"
-TELAPI_ACCOUNT_SID = "YOUR TELAPI ACCOUNT SID"
-TELAPI_TOKEN = "YOUR TELAPI ACCOUNT TOKEN"
-
-# Try to import TELAPI_ACCOUNT_SID and such from settings_local.py, if it exists
-try:
-    from settings_local import *
-except ImportError:
-    pass
-
-TELAPI_SMS_URL = "https://api.telapi.com/2011-07-01/Accounts/%s/SMS/Messages" % TELAPI_ACCOUNT_SID
 
 # Start the server
 if __name__ == "__main__":
@@ -51,15 +43,9 @@ if __name__ == "__main__":
                     last_sent_time = datetime.now()
                     print "Sending SMS..."
 
-                    # Send request to TelAPI to send SMS
+                    # Send request to Google Voice to send SMS
                     try:
-                        data = {
-                            "From": SMS_FROM,
-                            "To": SMS_TO,
-                            "Body": SMS_BODY,
-                        }
-                        requests.post(TELAPI_SMS_URL, data=data, auth=(TELAPI_ACCOUNT_SID, TELAPI_TOKEN))
-
+                    	voice.send_sms(SMS_TO, SMS_BODY)
                         print "** SMS Sent! **"
 
                     except Exception as e:
